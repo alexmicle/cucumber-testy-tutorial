@@ -1,6 +1,8 @@
 package org.fasttrackit.util;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,4 +25,19 @@ public abstract class TestBase {
             LOGGER.error("Exception when start suite", e);
         }
     }
+
+
+    public void doValidLogin(){
+
+        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement passwordElement = driver.findElement(By.name("password"));
+        WebElement loginBtn = driver.findElement(By.id("loginButton"));
+
+        username.sendKeys("eu@fast.com");
+
+        passwordElement.sendKeys("eu.pass");
+        loginBtn.click();
+    }
+
 }
