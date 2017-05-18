@@ -8,9 +8,6 @@ import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by alexm on 5/4/2017.
- */
 
 public class LoginTest extends TestBase{
 

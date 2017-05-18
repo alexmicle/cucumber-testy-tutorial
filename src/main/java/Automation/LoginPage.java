@@ -15,6 +15,10 @@ public class LoginPage {
     public WebElement loginBtn;
 
 
-
+public void login(String user, String pass){
+    username.sendKeys(user);
+    passwordElement.sendKeys(pass);
+    loginBtn.click();
+}
 
 }

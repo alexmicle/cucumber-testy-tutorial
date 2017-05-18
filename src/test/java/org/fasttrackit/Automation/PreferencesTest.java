@@ -18,7 +18,7 @@ public class PreferencesTest extends TestBase{
 
     @Test
     public void closePreferences(){
-        doValidLogin();
+        doLogin("eu@fast.com","eu.pass");
 
         WebElement preferenceBtn = driver.findElement(By.cssSelector("button.btn.btn-default.navbar-btn"));
 
@@ -27,17 +27,17 @@ public class PreferencesTest extends TestBase{
         Utils.sleep(500);
         //WebElement closePrefBtn = driver.findElement(By.cssSelector("#preferences-win .modal-footer button"));
 
-        //WebElement closePrefBtn = driver.findElement(By.cssSelector("#preferences-win button.close"));
+        WebElement closePrefBtn = driver.findElement(By.cssSelector("#preferences-win button.close"));
 
-        WebElement xBtn = driver.findElement(By.cssSelector(""));
+        //WebElement xBtn = driver.findElement(By.cssSelector(""));
 
-        xBtn.click();
+        closePrefBtn.click();
 
     }
 
     @Test
     public void changePasswordWithInvalidCurrentPassword(){
-        doValidLogin();
+        doLogin("eu@fast.com","eu.pass");
 
         changePassword("wrong.pass","new.pass","new.pass");
 
@@ -48,7 +48,7 @@ public class PreferencesTest extends TestBase{
 
     @Test
     public void changePasswordWithInvalidRepeatPassword(){
-        doValidLogin();
+        doLogin("eu@fast.com","eu.pass");
         changePassword("eu.pass","right.pass","wrong.pass");
 
         WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
@@ -61,7 +61,7 @@ public class PreferencesTest extends TestBase{
 
     @Test
     public void successChangePasswordTest(){
-        doValidLogin();
+        doLogin("eu@fast.com","eu.pass");
         changePassword("eu.pass","new.pass","new.pass");
 
         WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
