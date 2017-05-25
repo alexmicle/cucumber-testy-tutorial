@@ -16,6 +16,8 @@ public class LoginTest extends TestBase{
     public void validLoginTest(){
 
 
+
+
         driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
         WebElement username = driver.findElement(By.name("username"));
         WebElement passwordElement = driver.findElement(By.name("password"));

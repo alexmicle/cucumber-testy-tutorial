@@ -1,6 +1,7 @@
 package org.fasttrackit.Automation;
 
 import Automation.PreferencesPage;
+import Automation.PreferencesView;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,14 +14,14 @@ import static org.hamcrest.core.Is.is;
 public class PreferencesTest extends TestBase{
 
 
-    private PreferencesPage page;
-    public PreferencesTest(){
-        page = PageFactory.initElements(driver, PreferencesPage.class);
-    }
+    private PreferencesView page = new PreferencesView();
+//    public PreferencesTest(){
+//        page = PageFactory.initElements(driver, PreferencesPage.class);
+//    }
 
     @Test
     public void closePreferences(){
-        doLogin("eu@fast.com","eu.pass");
+        doLogin(USER_NAME,PASSWORD);
         page.open();
         page.close();
     }
@@ -38,7 +39,7 @@ public class PreferencesTest extends TestBase{
     @Test
     public void changePasswordWithInvalidRepeatPassword(){
 
-        changePassword("eu.pass","right.pass","wrong.pass");
+        changePassword(PASSWORD,"right.pass","wrong.pass");
 
         WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
 
@@ -50,7 +51,7 @@ public class PreferencesTest extends TestBase{
     @Test
     public void successChangePasswordTest(){
 
-        changePassword("eu.pass","new.pass","new.pass");
+        changePassword(PASSWORD,"new.pass","new.pass");
 
         WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
 
@@ -60,7 +61,7 @@ public class PreferencesTest extends TestBase{
     }
 
     public void changePassword(String password,String newPassword, String newPasswordRepeat){
-        doLogin("eu@fast.com","eu.pass");
+        doLogin(USER_NAME,PASSWORD);
         page.open();
         page.changePass(password,newPassword,newPasswordRepeat);
 
