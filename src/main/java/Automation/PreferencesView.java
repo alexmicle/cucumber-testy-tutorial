@@ -12,29 +12,31 @@ import com.sdl.selenium.web.utils.Utils;
 public class PreferencesView {
 
 
-    private Button preferenceBtn = new Button().setElCssSelector("button.btn.btn-default.navbar-btn");
+    private Button preferenceBtn = new Button().setText("Preferences");
 
-    private WebLocator xbtn = new WebLocator().setElCssSelector("#preferences-win button close");
+    private WebLocator win = new WebLocator().setId("preferences-win");
 
-    private TextField inputCurrentPassword= new TextField().setElPath("//*[@id='preferences-win']//input[@name = 'password']");
+    private Button xbtn = new Button(win).setClasses("Button");
 
-    private TextField inputNewPassword = new TextField().setElPath("//*[@id='preferences-win']//input[@name = 'newPassword']");
+    private TextField inputCurrentPassword= new TextField(win).setName("password");
 
-    private TextField inputRepeatPassword = new TextField().setElPath("//*[@id='preferences-win']//input[@name = 'newPasswordRepeat']");
+    private TextField inputNewPassword = new TextField(win).setName("newPassword");
 
-    private Button saveBtn = new Button().setElPath("//*[@id='preferences-win']//button[text() = 'Save']");
+    private TextField inputRepeatPassword = new TextField(win).setName("newPasswordRepeat");
 
-    private  WebLocator errorMsg = new WebLocator().setElPath("//*[@id='preferences-win']//*[@class = 'status-msg']");
+    private Button saveBtn = new Button(win).setText("Save");
 
-    private WebLocator closePrefBtn = new WebLocator().setElCssSelector("#preferences-win button.close");
+    private  WebLocator errorMsg = new WebLocator(win).setClasses("status-msg");
+
+    private Button closePrefBtn = new Button(win).setText("Close");
 
 
 
 
     public void changePass(String pass,String newPass,String repeatPass){
-        inputCurrentPassword.sendKeys(pass);
-        inputNewPassword.sendKeys(newPass);
-        inputRepeatPassword.sendKeys(repeatPass);
+        inputCurrentPassword.setValue(pass);
+        inputNewPassword.setValue(newPass);
+        inputRepeatPassword.setValue(repeatPass);
         saveBtn.click();
     }
 
