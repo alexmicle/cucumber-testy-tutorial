@@ -54,7 +54,6 @@ public class LoginTest extends TestBase{
 
         assertThat(errorMsg.getText(), is("Invalid user or password!"));
 
-
     }
 
 

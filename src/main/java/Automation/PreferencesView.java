@@ -9,26 +9,30 @@ import com.sdl.selenium.web.utils.Utils;
 /**
  * Created by alexm on 5/18/2017.
  */
-public class PreferencesView {
+public class PreferencesView extends WebLocator {
 
 
     private Button preferenceBtn = new Button().setText("Preferences");
 
-    private WebLocator win = new WebLocator().setId("preferences-win");
+    public PreferencesView(){
+        this.setId("preferences-win");
+    }
 
-    private Button xbtn = new Button(win).setClasses("Button");
+   // private WebLocator win = new WebLocator().setId("preferences-win");
 
-    private TextField inputCurrentPassword= new TextField(win).setName("password");
+    private Button xbtn = new Button(this).setClasses("Button");
 
-    private TextField inputNewPassword = new TextField(win).setName("newPassword");
+    private TextField inputCurrentPassword= new TextField(this).setName("password");
 
-    private TextField inputRepeatPassword = new TextField(win).setName("newPasswordRepeat");
+    private TextField inputNewPassword = new TextField(this).setName("newPassword");
 
-    private Button saveBtn = new Button(win).setText("Save");
+    private TextField inputRepeatPassword = new TextField(this).setName("newPasswordRepeat");
 
-    private  WebLocator errorMsg = new WebLocator(win).setClasses("status-msg");
+    private Button saveBtn = new Button(this).setText("Save");
 
-    private Button closePrefBtn = new Button(win).setText("Close");
+    private  WebLocator errorMsg = new WebLocator(this).setClasses("status-msg");
+
+    private Button closePrefBtn = new Button(this).setText("Close");
 
 
 
@@ -47,5 +51,9 @@ public class PreferencesView {
 
     public void close() {
         closePrefBtn.click();
+    }
+
+    public String getErrorMsg() {
+        return errorMsg.getText();
     }
 }

@@ -2,6 +2,7 @@ package org.fasttrackit.Automation;
 
 
 import Automation.PreferencesView;
+import com.sdl.selenium.web.WebLocator;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -30,9 +31,9 @@ public class PreferencesTest extends TestBase{
 
         changePassword("wrong.pass","new.pass","new.pass");
 
-        WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
+        String errorMsg = page.getErrorMsg();
 
-        assertThat(errorMsg.getText(), is("Your preview password is incorrect!"));
+        assertThat(errorMsg, is("Your preview password is incorrect!"));
     }
 
     @Test
@@ -40,9 +41,9 @@ public class PreferencesTest extends TestBase{
 
         changePassword(PASSWORD,"right.pass","wrong.pass");
 
-        WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
+        String errorMsg = page.getErrorMsg();
 
-        assertThat(errorMsg.getText(), is("Password does not match the confirm password!"));
+        assertThat(errorMsg, is("Password does not match the confirm password!"));
 
     }
 
@@ -52,9 +53,9 @@ public class PreferencesTest extends TestBase{
 
         changePassword(PASSWORD,"new.pass","new.pass");
 
-        WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"preferences-win\"]//*[@class = \"status-msg\"]"));
+        String errorMsg = page.getErrorMsg();
 
-        assertThat(errorMsg.getText(), is("Your password has been successfully changed."));
+        assertThat(errorMsg, is("Your password has been successfully changed."));
 
 
     }
