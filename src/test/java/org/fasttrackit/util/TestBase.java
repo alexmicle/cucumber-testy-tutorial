@@ -14,9 +14,9 @@ import org.testng.annotations.AfterMethod;
 
 public abstract class TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestBase.class);
-
-    public static String USER_NAME = "eu@fast.com";
-    public static String PASSWORD = "eu.pass";
+    protected static ConfigReader config = new ConfigReader();
+    public static String USER_NAME = config.getUser();
+    public static String PASSWORD = config.getPass();
 
     public static WebDriver driver;
 
@@ -39,7 +39,10 @@ public abstract class TestBase {
     public void doLogin(String user, String pass){
 
 
-        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+
+
+        String url = config.getUrl();
+        driver.get(url);
         loginpage.login(user,pass);
 
     }
