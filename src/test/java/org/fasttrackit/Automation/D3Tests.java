@@ -17,19 +17,28 @@ public class D3Tests extends TestBase {
 
         driver.get("https://us.battle.net/d3/en/");
 
-        Utils.sleep(5000);
+        Utils.sleep(1000);
         WebLocator gameGuide = new WebLocator().setText("Game Guide");
         gameGuide.click();
 
         WebLocator demonHunter  = new WebLocator().setText("Demon Hunter");
         demonHunter.click();
+        
+        WebElement webmonth = driver.findElement(By.xpath("//*[@class = 'form']//*[@name = 'month']"));
+        Select month = new Select(webmonth);
 
-        ComboBox month = new ComboBox().setTag("*").setId("month");
-        ComboBox day = new ComboBox().setTag("*").setText("day");
-        ComboBox year = new ComboBox().setTag("*").setText("year");
-        month.select("December");
-        day.select("5");
-        year.select("1987");
+        WebElement webday = driver.findElement(By.xpath("//*[@class = 'form']//*[@name = 'day']"));
+        Select day = new Select(webday);
+
+        WebElement webyear = driver.findElement(By.xpath("//*[@class = 'form']//*[@name = 'year']"));
+        Select year = new Select(webyear);
+
+//         ComboBox month = new ComboBox().setTag("*").setId("month");
+//         ComboBox day = new ComboBox().setTag("*").setText("day");
+//         ComboBox year = new ComboBox().setTag("*").setText("year");
+        month.selectByIndex(12);
+        day.selectByIndex(5);
+        year.selectByIndex(31);
 
         Button enter = new Button().setText("Enter", SearchType.DEEP_CHILD_NODE);
         enter.click();
